@@ -1,0 +1,862 @@
+{
+  "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "version": 1,
+  "newProjectRoot": "projects",
+  "projects": {
+    "streaming-analytics": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/streaming-analytics/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@c8y/cli:build",
+          "options": {
+            "outputPath": "dist/streaming-analytics",
+            "index": "projects/streaming-analytics/src/index.html",
+            "main": "projects/streaming-analytics/src/main.ts",
+            "polyfills": "projects/streaming-analytics/src/polyfills.ts",
+            "tsConfig": "projects/streaming-analytics/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/streaming-analytics/src/favicon.ico",
+              "projects/streaming-analytics/src/assets"
+            ],
+            "styles": [
+              "projects/streaming-analytics/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/streaming-analytics/src/environments/environment.ts",
+                  "with": "projects/streaming-analytics/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@c8y/cli:dev-server",
+          "options": {
+            "browserTarget": "streaming-analytics:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "streaming-analytics:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "streaming-analytics:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/streaming-analytics/src/test.ts",
+            "polyfills": "projects/streaming-analytics/src/polyfills.ts",
+            "tsConfig": "projects/streaming-analytics/tsconfig.spec.json",
+            "karmaConfig": "projects/streaming-analytics/karma.conf.js",
+            "assets": [
+              "projects/streaming-analytics/src/favicon.ico",
+              "projects/streaming-analytics/src/assets"
+            ],
+            "styles": [
+              "projects/streaming-analytics/src/styles.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/streaming-analytics/tsconfig.app.json",
+              "projects/streaming-analytics/tsconfig.spec.json",
+              "projects/streaming-analytics/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/streaming-analytics/e2e/protractor.conf.js",
+            "devServerTarget": "streaming-analytics:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "streaming-analytics:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "streaming-analytics-e2e": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "projects/streaming-analytics-e2e",
+      "sourceRoot": "projects/streaming-analytics-e2e/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/streaming-analytics-e2e",
+            "index": "projects/streaming-analytics-e2e/src/index.html",
+            "main": "projects/streaming-analytics-e2e/src/main.ts",
+            "polyfills": "projects/streaming-analytics-e2e/src/polyfills.ts",
+            "tsConfig": "projects/streaming-analytics-e2e/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/streaming-analytics-e2e/src/favicon.ico",
+              "projects/streaming-analytics-e2e/src/assets"
+            ],
+            "styles": [
+              "projects/streaming-analytics-e2e/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/streaming-analytics-e2e/src/environments/environment.ts",
+                  "with": "projects/streaming-analytics-e2e/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "streaming-analytics-e2e:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "streaming-analytics-e2e:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "streaming-analytics-e2e:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/streaming-analytics-e2e/src/test.ts",
+            "polyfills": "projects/streaming-analytics-e2e/src/polyfills.ts",
+            "tsConfig": "projects/streaming-analytics-e2e/tsconfig.spec.json",
+            "karmaConfig": "projects/streaming-analytics-e2e/karma.conf.js",
+            "assets": [
+              "projects/streaming-analytics-e2e/src/favicon.ico",
+              "projects/streaming-analytics-e2e/src/assets"
+            ],
+            "styles": [
+              "projects/streaming-analytics-e2e/src/styles.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/streaming-analytics-e2e/tsconfig.app.json",
+              "projects/streaming-analytics-e2e/tsconfig.spec.json",
+              "projects/streaming-analytics-e2e/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/streaming-analytics-e2e/e2e/protractor.conf.js",
+            "devServerTarget": "streaming-analytics-e2e:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "streaming-analytics-e2e:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "epl-apps": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/epl-apps/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@c8y/cli:build",
+          "options": {
+            "outputPath": "dist/epl-apps",
+            "index": "projects/epl-apps/src/index.html",
+            "main": "projects/epl-apps/src/main.ts",
+            "polyfills": "projects/epl-apps/src/polyfills.ts",
+            "tsConfig": "projects/epl-apps/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/epl-apps/src/favicon.ico",
+              "projects/epl-apps/src/assets"
+            ],
+            "styles": [
+              "projects/epl-apps/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/epl-apps/src/environments/environment.ts",
+                  "with": "projects/epl-apps/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@c8y/cli:dev-server",
+          "options": {
+            "browserTarget": "epl-apps:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "epl-apps:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "epl-apps:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/epl-apps/src/test.ts",
+            "polyfills": "projects/epl-apps/src/polyfills.ts",
+            "tsConfig": "projects/epl-apps/tsconfig.spec.json",
+            "karmaConfig": "projects/epl-apps/karma.conf.js",
+            "assets": [
+              "projects/epl-apps/src/favicon.ico",
+              "projects/epl-apps/src/assets"
+            ],
+            "styles": [
+              "projects/epl-apps/src/styles.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/epl-apps/tsconfig.app.json",
+              "projects/epl-apps/tsconfig.spec.json",
+              "projects/epl-apps/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/epl-apps/e2e/protractor.conf.js",
+            "devServerTarget": "epl-apps:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "epl-apps:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "epl-apps-e2e": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "projects/epl-apps-e2e",
+      "sourceRoot": "projects/epl-apps-e2e/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/epl-apps-e2e",
+            "index": "projects/epl-apps-e2e/src/index.html",
+            "main": "projects/epl-apps-e2e/src/main.ts",
+            "polyfills": "projects/epl-apps-e2e/src/polyfills.ts",
+            "tsConfig": "projects/epl-apps-e2e/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/epl-apps-e2e/src/favicon.ico",
+              "projects/epl-apps-e2e/src/assets"
+            ],
+            "styles": [
+              "projects/epl-apps-e2e/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/epl-apps-e2e/src/environments/environment.ts",
+                  "with": "projects/epl-apps-e2e/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "epl-apps-e2e:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "epl-apps-e2e:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "epl-apps-e2e:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/epl-apps-e2e/src/test.ts",
+            "polyfills": "projects/epl-apps-e2e/src/polyfills.ts",
+            "tsConfig": "projects/epl-apps-e2e/tsconfig.spec.json",
+            "karmaConfig": "projects/epl-apps-e2e/karma.conf.js",
+            "assets": [
+              "projects/epl-apps-e2e/src/favicon.ico",
+              "projects/epl-apps-e2e/src/assets"
+            ],
+            "styles": [
+              "projects/epl-apps-e2e/src/styles.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/epl-apps-e2e/tsconfig.app.json",
+              "projects/epl-apps-e2e/tsconfig.spec.json",
+              "projects/epl-apps-e2e/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/epl-apps-e2e/e2e/protractor.conf.js",
+            "devServerTarget": "epl-apps-e2e:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "epl-apps-e2e:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "analytics-builder": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "",
+      "sourceRoot": "projects/analytics-builder/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@c8y/cli:build",
+          "options": {
+            "outputPath": "dist/analytics-builder",
+            "index": "projects/analytics-builder/src/index.html",
+            "main": "projects/analytics-builder/src/main.ts",
+            "polyfills": "projects/analytics-builder/src/polyfills.ts",
+            "tsConfig": "projects/analytics-builder/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/analytics-builder/src/favicon.ico",
+              "projects/analytics-builder/src/assets"
+            ],
+            "styles": [
+              "projects/analytics-builder/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics-builder/src/environments/environment.ts",
+                  "with": "projects/analytics-builder/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@c8y/cli:dev-server",
+          "options": {
+            "browserTarget": "analytics-builder:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "analytics-builder:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "analytics-builder:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/analytics-builder/src/test.ts",
+            "polyfills": "projects/analytics-builder/src/polyfills.ts",
+            "tsConfig": "projects/analytics-builder/tsconfig.spec.json",
+            "karmaConfig": "projects/analytics-builder/karma.conf.js",
+            "assets": [
+              "projects/analytics-builder/src/favicon.ico",
+              "projects/analytics-builder/src/assets"
+            ],
+            "styles": [
+              "projects/analytics-builder/src/styles.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/analytics-builder/tsconfig.app.json",
+              "projects/analytics-builder/tsconfig.spec.json",
+              "projects/analytics-builder/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/analytics-builder/e2e/protractor.conf.js",
+            "devServerTarget": "analytics-builder:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "analytics-builder:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "analytics-builder-e2e": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "projects/analytics-builder-e2e",
+      "sourceRoot": "projects/analytics-builder-e2e/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/analytics-builder-e2e",
+            "index": "projects/analytics-builder-e2e/src/index.html",
+            "main": "projects/analytics-builder-e2e/src/main.ts",
+            "polyfills": "projects/analytics-builder-e2e/src/polyfills.ts",
+            "tsConfig": "projects/analytics-builder-e2e/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/analytics-builder-e2e/src/favicon.ico",
+              "projects/analytics-builder-e2e/src/assets"
+            ],
+            "styles": [
+              "projects/analytics-builder-e2e/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics-builder-e2e/src/environments/environment.ts",
+                  "with": "projects/analytics-builder-e2e/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "analytics-builder-e2e:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "analytics-builder-e2e:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "analytics-builder-e2e:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/analytics-builder-e2e/src/test.ts",
+            "polyfills": "projects/analytics-builder-e2e/src/polyfills.ts",
+            "tsConfig": "projects/analytics-builder-e2e/tsconfig.spec.json",
+            "karmaConfig": "projects/analytics-builder-e2e/karma.conf.js",
+            "assets": [
+              "projects/analytics-builder-e2e/src/favicon.ico",
+              "projects/analytics-builder-e2e/src/assets"
+            ],
+            "styles": [
+              "projects/analytics-builder-e2e/src/styles.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/analytics-builder-e2e/tsconfig.app.json",
+              "projects/analytics-builder-e2e/tsconfig.spec.json",
+              "projects/analytics-builder-e2e/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/analytics-builder-e2e/e2e/protractor.conf.js",
+            "devServerTarget": "analytics-builder-e2e:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "analytics-builder-e2e:serve:production"
+            }
+          }
+        }
+      }
+    },
+    "analytics-common": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "less"
+        }
+      },
+      "root": "projects/analytics-common",
+      "sourceRoot": "projects/analytics-common/src",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/analytics-common",
+            "index": "projects/analytics-common/src/index.html",
+            "main": "projects/analytics-common/src/main.ts",
+            "polyfills": "projects/analytics-common/src/polyfills.ts",
+            "tsConfig": "projects/analytics-common/tsconfig.app.json",
+            "aot": false,
+            "assets": [
+              "projects/analytics-common/src/favicon.ico",
+              "projects/analytics-common/src/assets"
+            ],
+            "styles": [
+              "projects/analytics-common/src/styles.less"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/analytics-common/src/environments/environment.ts",
+                  "with": "projects/analytics-common/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                },
+                {
+                  "type": "anyComponentStyle",
+                  "maximumWarning": "6kb",
+                  "maximumError": "10kb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "analytics-common:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "analytics-common:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "analytics-common:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/analytics-common/src/test.ts",
+            "polyfills": "projects/analytics-common/src/polyfills.ts",
+            "tsConfig": "projects/analytics-common/tsconfig.spec.json",
+            "karmaConfig": "projects/analytics-common/karma.conf.js",
+            "assets": [
+              "projects/analytics-common/src/favicon.ico",
+              "projects/analytics-common/src/assets"
+            ],
+            "styles": [
+              "projects/analytics-common/src/styles.less"
+            ],
+            "scripts": []
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/analytics-common/tsconfig.app.json",
+              "projects/analytics-common/tsconfig.spec.json",
+              "projects/analytics-common/e2e/tsconfig.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        },
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/analytics-common/e2e/protractor.conf.js",
+            "devServerTarget": "analytics-common:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "analytics-common:serve:production"
+            }
+          }
+        }
+      }
+    }
+  },
+  "defaultProject": "streaming-analytics"
+}
